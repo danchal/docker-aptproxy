@@ -13,7 +13,9 @@ RUN rm -rf /var/lib/apt/lists/*;
 
 EXPOSE 3142/tcp
 EXPOSE 5353/udp
-VOLUME ["/cache", "/config"]
+VOLUME ["/data"]
+
+ENV APTPROXY_OPTIONS=
 
 COPY entrypoint.sh /
 RUN  chmod +x /entrypoint.sh;

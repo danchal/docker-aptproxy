@@ -1,10 +1,7 @@
 #!/bin/sh
 
-# Copy all configuration files if not already existing
-if [ ! -f /config/acng.conf ]; then
-    echo "WARNING: /config/acng.conf does not exist, creating all missing configuration files"
-    cp -n -r /etc/apt-cacher-ng/* /config/;
-fi
+mkdir -p /data/cache
+mkdir -p /data/log
 
 echo "### Start DBUS service ###"
 /etc/init.d/dbus start
@@ -13,7 +10,7 @@ echo "### Start AVAHI daemon ###"
 /etc/init.d/avahi-daemon start
 
 echo "### Start APT-CACHER-NG service ###"
-exec /usr/sbin/apt-cacher-ng -c /config ForeGround=1 CacheDir=/cache
+exec /usr/sbin/apt-cacher-ng -c /etc/apt-cacher-ng ForeGround=1 CacheDir=/data/cache LogDir=/data/log ${APTPROXY_OPTIONS}
 
 cat <<EOF
 ===========================================================
