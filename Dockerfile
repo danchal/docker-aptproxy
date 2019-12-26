@@ -20,7 +20,7 @@ ENV APTPROXY_OPTIONS=
 COPY entrypoint.sh /
 RUN  chmod +x /entrypoint.sh;
 
-HEALTHCHECK --interval=10s --timeout=2s --retries=3 \
-    CMD wget -q0 - http://localhost:3142/acng-report.html || exit 1
+HEALTHCHECK --interval=30s --timeout=2s --retries=3 \
+    CMD wget --quiet --spider http://localhost:3142/acng-report.html || exit 1
 
 ENTRYPOINT ["/entrypoint.sh"]
