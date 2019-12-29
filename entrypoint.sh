@@ -9,11 +9,11 @@ echo "### Start DBUS service ###"
 echo "### Start AVAHI daemon ###"
 /etc/init.d/avahi-daemon start
 
-echo "### Start APT-CACHER-NG service ###"
-exec /usr/sbin/apt-cacher-ng -c /etc/apt-cacher-ng ForeGround=1 CacheDir=/data/cache LogDir=/data/log ${APTPROXY_OPTIONS}
-
 cat <<EOF
 ===========================================================
 The dockerized APT-CACHER-NG instance is now ready for use!
 ===========================================================
 EOF
+
+echo "### Start APT-CACHER-NG service ###"
+exec /usr/sbin/apt-cacher-ng -c /etc/apt-cacher-ng ForeGround=1 CacheDir=/data/cache LogDir=/data/log ${APTPROXY_OPTIONS}
