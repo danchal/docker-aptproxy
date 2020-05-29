@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM lsiobase/ubuntu:bionic
 
 ENV TERM=xterm
 
